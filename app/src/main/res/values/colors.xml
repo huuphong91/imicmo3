@@ -3,4 +3,35 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="white">#ffffff</color>
+    <color name="overlayBackground">#585757</color>
+    <color name="overlayActionBar">#0e0d0e</color>
+    <color name="button_shadow">#4d808080</color>
+    <color name="background_shadow">#4d000000</color>
+
+    <item name="blue" type="color">#43bce9</item>
+    <item name="lightgreen" type="color">#d1ea86</item>
+    <item name="green" type="color">#99cc00</item>
+    <item name="orange" type="color">#f1c979</item>
+    <item name="lightpurple" type="color">#b6c0f5</item>
+    <item name="skyblue" type="color">#9adef4</item>
+    <item name="purple" type="color">#e4aef4</item>
+    <item name="darkgreen" type="color">#73ac01</item>
+    <item name="yellow" type="color">#f1ea71</item>
+    <item name="pink" type="color">#e6aaaa</item>
+
+    <array name="developercolors">
+        <item>@color/blue</item>
+        <item>@color/lightgreen</item>
+        <item>@color/green</item>
+        <item>@color/orange</item>
+        <item>@color/lightpurple</item>
+        <item>@color/skyblue</item>
+        <item>@color/purple</item>
+        <item>@color/darkgreen</item>
+        <item>@color/yellow</item>
+        <item>@color/pink</item>
+    </array>
+
 </resources>
