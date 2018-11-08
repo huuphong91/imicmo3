@@ -5,9 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.hhh.imicmo3.Views.InfoUserFragment;
+import com.example.hhh.imicmo3.Views.InfoUserFragment.InfoUserFragment;
 import com.example.hhh.imicmo3.Views.IntroducesFragment;
-import com.example.hhh.imicmo3.Views.JobRecruitmentsFragment;
+import com.example.hhh.imicmo3.Views.JobRecruimentFragment.JobRecruitmentsFragment;
 import com.example.hhh.imicmo3.Views.OpeningSchedulerFragment.OpeningSchedulerFragment;
 import com.example.hhh.imicmo3.Views.VideoGroupFragment.VideoGroupFragment;
 
@@ -19,6 +19,7 @@ public class PagesAdapter extends FragmentStatePagerAdapter {
 
     public PagesAdapter(FragmentManager fm, Context context) {
         super(fm);
+
         fragmentManagers = new ArrayList<>();
         fragmentManagers.add(new VideoGroupFragment());
         fragmentManagers.add(new JobRecruitmentsFragment());

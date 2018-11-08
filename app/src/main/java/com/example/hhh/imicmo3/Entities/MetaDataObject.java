@@ -5,21 +5,19 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MetaData<T> {
+public class MetaDataObject<T> {
     @SerializedName("ErrorMessage")
     @Expose
     private String errorMessage;
     @SerializedName("Result")
     @Expose
-    private List<T> result = null;
+    private T result = null;
     @SerializedName("ReturnCode")
     @Expose
     private String returnCode;
     @SerializedName("TotalRecord")
     @Expose
     private Integer totalRecord;
-
-
 
     public String getErrorMessage() {
         return errorMessage;
@@ -29,11 +27,11 @@ public class MetaData<T> {
         this.errorMessage = errorMessage;
     }
 
-    public List<T> getResult() {
+    public T getResult() {
         return result;
     }
 
-    public void setResult(List<T> result) {
+    public void setResult(T result) {
         this.result = result;
     }
 
@@ -48,7 +46,6 @@ public class MetaData<T> {
     public Integer getTotalRecord() {
         return totalRecord;
     }
-
 
     public void setTotalRecord(Integer totalRecord) {
         this.totalRecord = totalRecord;

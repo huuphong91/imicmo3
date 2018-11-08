@@ -1,5 +1,6 @@
 package com.example.hhh.imicmo3.Views;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.example.hhh.imicmo3.Entities.AccountEntity;
 import com.example.hhh.imicmo3.R;
 import com.example.hhh.imicmo3.Adapters.CustomViewPager;
 import com.example.hhh.imicmo3.Adapters.PagesAdapter;
@@ -22,23 +24,21 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private Toolbar toolbar;
     private CustomViewPager viewPager; // class custom lai viewpager
     private TabLayout tabLayout;
+    public static int REQUEST_CODE_LOGIN_REGISTER = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         toolbar = findViewById(R.id.toolbar);
         tabLayout = findViewById(R.id.tablayout);
         viewPager = findViewById(R.id.viewpager);
         setSupportActionBar(toolbar);
         initEvent(viewPager);
         setTabLayout(tabLayout);
+
     }
+
 
     public void initEvent(CustomViewPager viewPager){
         this.viewPager = viewPager;
@@ -123,4 +123,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
+
 }
