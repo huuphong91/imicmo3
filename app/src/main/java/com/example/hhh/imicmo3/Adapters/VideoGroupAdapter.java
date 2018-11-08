@@ -18,6 +18,12 @@ import java.util.ArrayList;
 public class VideoGroupAdapter extends RecyclerView.Adapter<VideoGroupAdapter.ViewHolder> {
     private Context context;
     private ArrayList<VideoGroupEntity> listVGroup;
+    private static ItemClickListener listener;
+
+
+    public void setOnItemClickListener(ItemClickListener listener) {
+        this.listener = listener;
+    }
 
     public VideoGroupAdapter(Context context, ArrayList<VideoGroupEntity> listVGroup) {
         this.context = context;
@@ -44,13 +50,30 @@ public class VideoGroupAdapter extends RecyclerView.Adapter<VideoGroupAdapter.Vi
         return listVGroup.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
          ImageView imageView;
          TextView tvCourse;
-        ViewHolder(@NonNull View itemView) {
+       public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image_vgroup);
             tvCourse = itemView.findViewById(R.id.text_vgroup);
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            listener.onItemClick(getAdapterPosition(), v);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            listener.onItemLongClick(getAdapterPosition(), v);
+            return false;
+        }
+    }
+    public interface ItemClickListener{
+        void onItemClick(int position, View v);
+        void onItemLongClick(int position, View v);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.hhh.imicmo3.Views.VideoGroupFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,8 @@ import com.example.hhh.imicmo3.Adapters.VideoGroupAdapter;
 import com.example.hhh.imicmo3.Entities.VideoGroupEntity;
 import com.example.hhh.imicmo3.Presenters.VideoGroupFragmentPresenter;
 import com.example.hhh.imicmo3.R;
+import com.example.hhh.imicmo3.Views.VideoActivity;
+import com.google.android.youtube.player.internal.v;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +47,7 @@ public class VideoGroupFragment extends Fragment implements CallBackVideoGroupFr
 
 
     @Override
-    public void getApiListVideoGroupThanhCong(List<VideoGroupEntity> listVideoGroup) {
+    public void getApiListVideoGroupThanhCong(final List<VideoGroupEntity> listVideoGroup) {
             progressBar.setVisibility(View.INVISIBLE);
             recyclerView.setVisibility(View.VISIBLE);
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
@@ -52,6 +55,22 @@ public class VideoGroupFragment extends Fragment implements CallBackVideoGroupFr
             adapter = new VideoGroupAdapter(getActivity(), (ArrayList<VideoGroupEntity>) listVideoGroup);
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
+        adapter.setOnItemClickListener(new VideoGroupAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                Intent intent = new Intent(getActivity(), VideoActivity.class);
+                intent.putExtra("VGroupId", listVideoGroup.get(position).getVGroupId());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(int position, View v) {
+                Intent intent = new Intent(getActivity(), VideoActivity.class);
+                intent.putExtra("VGroupId", listVideoGroup.get(position).getVGroupId());
+                startActivity(intent);
+
+            }
+        });
 
 
     }
