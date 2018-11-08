@@ -15,23 +15,30 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".Views.MainActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:screenOrientation="portrait"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Views.DeveloperActivity.DeveloperActivity" />
+        <activity android:name=".Views.DeveloperActivity.DeveloperActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Views.SignInActivity.SignInActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Views.RegisterUserActivity.RegisterUserActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".Views.VideoActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Views.PlayActivity"
+        <activity
+            android:name=".Views.VideoActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Views.PlayActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Views.FlashScreenActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
+        <activity android:name=".Views.IntroActivity"
             android:screenOrientation="portrait"/>
     </application>
 
