@@ -10,17 +10,24 @@ import android.widget.TextView;
 
 import com.example.hhh.imicmo3.Entities.JobRecruimentEntity;
 import com.example.hhh.imicmo3.R;
+import com.example.hhh.imicmo3.Utilities.Commons;
 
 import java.util.List;
 
 public class JobRecruimentAdapter extends BaseAdapter {
     private Context context;
     private List<JobRecruimentEntity> list;
+    private OnClicked onClicked;
 
-    public JobRecruimentAdapter(Context context, List<JobRecruimentEntity> list) {
+
+
+    public JobRecruimentAdapter(Context context, List<JobRecruimentEntity> list, OnClicked onClicked) {
         this.context = context;
         this.list = list;
+        this.onClicked = onClicked;
     }
+
+
 
     @Override
     public int getCount() {
@@ -38,9 +45,8 @@ public class JobRecruimentAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        ViewHoler viewHoler;
+    public View getView(final int position, View convertView, ViewGroup parent) {
+       ViewHoler viewHoler;
         View view = convertView;
         if (view == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(context);
@@ -57,13 +63,18 @@ public class JobRecruimentAdapter extends BaseAdapter {
         else {
             viewHoler = (ViewHoler) view.getTag();
         }
-        JobRecruimentEntity jobRecruitments = list.get(position);
+        final JobRecruimentEntity jobRecruitments = list.get(position);
         viewHoler.CorporationId.setText(jobRecruitments.getCorporationId());
         viewHoler.Title.setText(jobRecruitments.getCareerName());
         viewHoler.LocationName.setText(jobRecruitments.getLocationName());
         viewHoler.Salary.setText(jobRecruitments.getSalary());
         viewHoler.Deadline.setText(jobRecruitments.getDeadline());
-
+        viewHoler.nopCV_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            onClicked.setOnClickedPostition(position);
+            }
+        });
         return view;
 
 
@@ -75,6 +86,12 @@ public class JobRecruimentAdapter extends BaseAdapter {
                 LocationName,
                 Salary,
                 Deadline;
+
         Button nopCV_Btn;
     }
+
+    public interface OnClicked {
+        void setOnClickedPostition(int position);
+    }
+
 }

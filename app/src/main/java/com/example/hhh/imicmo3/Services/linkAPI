@@ -16,3 +16,5 @@ Tìm theo Career
 http://cokhihoptac.com/Service1.svc/api/getCareers
 Tìm kiếm tuyển dụng
 "http://cokhihoptac.com/Service1.svc/api/getJobRecruiment/?id="+locationId+"&id1="+careerId+"&id2="+typeOfWorkId+""
+
+Ứng tuyển công việc

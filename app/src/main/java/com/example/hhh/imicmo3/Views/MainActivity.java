@@ -5,11 +5,13 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,12 +22,14 @@ import com.example.hhh.imicmo3.R;
 import com.example.hhh.imicmo3.Adapters.CustomViewPager;
 import com.example.hhh.imicmo3.Adapters.PagesAdapter;
 import com.example.hhh.imicmo3.Views.DeveloperActivity.DeveloperActivity;
+import com.example.hhh.imicmo3.Views.InfoUserFragment.InfoUserFragment;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
     private Toolbar toolbar;
     private CustomViewPager viewPager; // class custom lai viewpager
     private TabLayout tabLayout;
     public static int REQUEST_CODE_LOGIN_REGISTER = 1;
+    private InfoUserFragment infoUserFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +47,18 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     public void initEvent(CustomViewPager viewPager){
         this.viewPager = viewPager;
+
         viewPager.setOffscreenPageLimit(5);
         PagerAdapter pagerAdapter = new PagesAdapter(getSupportFragmentManager(),this);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setCurrentItem(2);
+        infoUserFragment = (InfoUserFragment) ((PagesAdapter) pagerAdapter).getItem(4);
         viewPager.addOnPageChangeListener(this);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setPagingEnabled(false); //disable keo trang trong viewpagers
     }
+
+
 
     public void setTabLayout(TabLayout tabLayout) {
         this.tabLayout = tabLayout;
@@ -76,6 +84,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         String[] titles = {s1, s2, s3, s4, s5};
         String titleChanged = titles[viewPager.getCurrentItem()];
         getSupportActionBar().setTitle(titleChanged);
+
+
     }
 
     @Override
@@ -125,6 +135,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         return super.onKeyDown(keyCode, event);
     }
 
-
+    public void notifyDataSetChanged() {
+        infoUserFragment.notifyDataSetChanged();
+    }
 
 }

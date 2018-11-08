@@ -83,6 +83,8 @@ public class InfoUserFragment extends Fragment implements View.OnClickListener,C
         }
         if (v.getId() == sign_out.getId()) {
             Commons.checkLogin = false;
+            Commons.PROFILEID = "";
+            Commons.JOBRECRUIMENTID = "";
             tv_noRecruitment.setVisibility(View.INVISIBLE);
             showLogin.setVisibility(View.VISIBLE);
             circleImageView.setVisibility(View.INVISIBLE);
@@ -143,7 +145,13 @@ public class InfoUserFragment extends Fragment implements View.OnClickListener,C
                 user_logged_in.setText(accountEntity.getFullName());
                 infoUserFragmentPresenter.getListRecruiment(accountEntity.getProfileId());
 
+
             };
         }
+    }
+
+    public void notifyDataSetChanged() {
+        infoUserFragmentPresenter.getListRecruiment(accountEntity.getProfileId());
+        tv_noRecruitment.setVisibility(View.INVISIBLE);
     }
 }

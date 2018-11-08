@@ -15,4 +15,8 @@ public interface CallBackJobRecruimentFragmentModel {
     void xuLyGetListLocation(List<LocationEntity> locationEntities);
 
     void xuLyGetListJobRecruimentAll(List<JobRecruimentEntity> jobRecruimentEntities);
+
+    void xuLyInsertRecruimentThanhCong(String sThongBao);
+
+    void xuLyInsertRecruimentThatBai(String sThongBao);
 }

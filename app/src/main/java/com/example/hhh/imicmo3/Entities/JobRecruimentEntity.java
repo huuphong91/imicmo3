@@ -22,7 +22,7 @@ public class JobRecruimentEntity {
     @SerializedName("Experience")
     @Expose
     private String experience;
-    @SerializedName("JobRecruimentId")
+    @SerializedName("JobRecruitmentId")
     @Expose
     private String jobRecruitmentId;
     @SerializedName("JobDescription")
@@ -64,6 +64,23 @@ public class JobRecruimentEntity {
         this.locationName = locationName;
         this.salary = salary;
         this.jobRecruitmentId = jobRecruitmentId;
+    }
+
+    public JobRecruimentEntity(String careerId, String careerName, String corporationId, String deadline, String description, String experience, String jobRecruitmentId, String jobDescription, String locationId, String locationName, String salary, String title, String typeName, String typeOfWorkId) {
+        this.careerId = careerId;
+        this.careerName = careerName;
+        this.corporationId = corporationId;
+        this.deadline = deadline;
+        this.description = description;
+        this.experience = experience;
+        this.jobRecruitmentId = jobRecruitmentId;
+        this.jobDescription = jobDescription;
+        this.locationId = locationId;
+        this.locationName = locationName;
+        this.salary = salary;
+        this.title = title;
+        this.typeName = typeName;
+        this.typeOfWorkId = typeOfWorkId;
     }
 
     public String getCareerId() {

@@ -6,6 +6,7 @@ import com.example.hhh.imicmo3.Entities.LocationEntity;
 import com.example.hhh.imicmo3.Entities.TypeOfWorkEntity;
 import com.example.hhh.imicmo3.Models.JobRecruimentFragment.CallBackJobRecruimentFragmentModel;
 import com.example.hhh.imicmo3.Models.JobRecruimentFragment.JobRecruimentFragmentModel;
+import com.example.hhh.imicmo3.Utilities.Commons;
 import com.example.hhh.imicmo3.Views.JobRecruimentFragment.CallBackJobRecruimentFragment;
 
 import java.util.List;
@@ -18,6 +19,11 @@ public class JobRecruimentPresenter implements CallBackJobRecruimentFragmentMode
         this.callBackJobRecruimentFragment = callBackJobRecruimentFragment;
         jobRecruimentFragmentModel = new JobRecruimentFragmentModel(this);
     }
+
+    public void insertRecruiment(String deadline) {
+        jobRecruimentFragmentModel.xuLyInsertRecruiment(deadline);
+    }
+
 
     public void getListTypeOfWork() {
         jobRecruimentFragmentModel.xuLyGetListTypeOfWork();
@@ -54,4 +60,18 @@ public class JobRecruimentPresenter implements CallBackJobRecruimentFragmentMode
     public void xuLyGetListJobRecruimentAll(List<JobRecruimentEntity> jobRecruimentEntities) {
         callBackJobRecruimentFragment.getListJobRecruimentAllThanhCong(jobRecruimentEntities);
     }
+
+    @Override
+    public void xuLyInsertRecruimentThanhCong(String sThongBao) {
+        callBackJobRecruimentFragment.insertRecruimentThanhCong(sThongBao);
+        Commons.checkClickedButtonRecruimentSuccess = true;
+
+    }
+
+    @Override
+    public void xuLyInsertRecruimentThatBai(String sThongBao) {
+        callBackJobRecruimentFragment.insertRecruimentThatBai(sThongBao);
+    }
+
+
 }

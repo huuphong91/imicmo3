@@ -56,6 +56,7 @@ public class SignInActivity extends AppCompatActivity implements CallBackSignInA
         intent.putExtra("Account", accountEntity);
         setResult(RESULT_OK, intent);
         Commons.checkLogin = true;
+        Commons.PROFILEID = accountEntity.getProfileId();
         finish();
 
     }

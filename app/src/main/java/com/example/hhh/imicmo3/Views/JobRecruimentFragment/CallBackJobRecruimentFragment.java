@@ -15,4 +15,8 @@ public interface CallBackJobRecruimentFragment {
     void getListLocationThanhCong(List<LocationEntity> locationEntities);
 
     void getListJobRecruimentAllThanhCong(List<JobRecruimentEntity> jobRecruimentEntities);
+
+    void insertRecruimentThanhCong(String sThongBao);
+
+    void insertRecruimentThatBai(String sThongBao);
 }

@@ -54,6 +54,12 @@ public interface ResponseService {
                                                                @Query("id1") String career,
                                                                @Query("id2") String typeofwork);
 
+    @GET("api/insertRecruiment/")
+    Call<ResponseBody> insertRecruiment(@Query("profileid") String profileid,
+                                    @Query("jobrecruimentid") String jobrecruimentid,
+                                    @Query("deadline") String deadline,
+                                    @Query("desiderate") String desiderate);
+
 
 
 }

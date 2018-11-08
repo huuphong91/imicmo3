@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 import com.example.hhh.imicmo3.Adapters.JobRecruimentAdapter;
@@ -22,20 +23,23 @@ import com.example.hhh.imicmo3.Entities.TypeOfWorkEntity;
 import com.example.hhh.imicmo3.Presenters.JobRecruimentPresenter;
 import com.example.hhh.imicmo3.R;
 import com.example.hhh.imicmo3.Utilities.Commons;
+import com.example.hhh.imicmo3.Views.MainActivity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class JobRecruitmentsFragment extends Fragment implements CallBackJobRecruimentFragment {
+public class JobRecruitmentsFragment extends Fragment implements CallBackJobRecruimentFragment, JobRecruimentAdapter.OnClicked {
     private ProgressBar pbJobRecruiment;
     private ListView listView;
     private Spinner noi_lam_viec_spinner,
             nganh_nghe_spinner,
             loai_cv_spinner;
     private ArrayAdapter<String> spinnerAdapter;
-    private JobRecruimentAdapter jobRecruimentAdapter;
     private List<String> typeOfWorkNameList,locationNameList, careerNameList;
     private JobRecruimentPresenter jobRecruimentPresenter;
+    private List<JobRecruimentEntity> jobRecruimentEntityList;
+
 
 
     public JobRecruitmentsFragment() {
@@ -150,13 +154,42 @@ public class JobRecruitmentsFragment extends Fragment implements CallBackJobRecr
 
     @Override
     public void getListJobRecruimentAllThanhCong(List<JobRecruimentEntity> jobRecruimentEntities) {
+        this.jobRecruimentEntityList = jobRecruimentEntities;
         pbJobRecruiment.setVisibility(View.INVISIBLE);
         listView.setVisibility(View.VISIBLE);
-        jobRecruimentAdapter = new JobRecruimentAdapter(getActivity(), jobRecruimentEntities);
+        JobRecruimentAdapter jobRecruimentAdapter = new JobRecruimentAdapter(getActivity(), jobRecruimentEntities,this);
         listView.setAdapter(jobRecruimentAdapter);
         jobRecruimentAdapter.notifyDataSetChanged();
 
     }
+
+    @Override
+    public void insertRecruimentThanhCong(String sThongBao) {
+        Toast.makeText(getActivity(), sThongBao, Toast.LENGTH_SHORT).show();
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.notifyDataSetChanged();
+    }
+
+    @Override
+    public void insertRecruimentThatBai(String sThongBao) {
+        Toast.makeText(getActivity(), sThongBao, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setOnClickedPostition(int position) {
+        String deadline;
+        Calendar calendar = Calendar.getInstance();
+        deadline =String.valueOf(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.DATE)+"/"+calendar.get(Calendar.YEAR);
+        Commons.JOBRECRUIMENTID = jobRecruimentEntityList.get(position).getJobRecruitmentId();
+        jobRecruimentPresenter.insertRecruiment(deadline);
+    }
+
+
+
+
+
+
+
 
 
 }

@@ -10,9 +10,12 @@ import com.example.hhh.imicmo3.Entities.TypeOfWorkEntity;
 import com.example.hhh.imicmo3.Services.ResponseService;
 import com.example.hhh.imicmo3.Services.RetrofitInstance;
 import com.example.hhh.imicmo3.Utilities.Commons;
+import com.example.hhh.imicmo3.Views.MainActivity;
 
+import java.io.IOException;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -111,6 +114,44 @@ public class JobRecruimentFragmentModel {
             @Override
             public void onFailure(@NonNull Call<MetaData<JobRecruimentEntity>> call, @NonNull Throwable t) {
 
+            }
+
+        });
+    }
+
+    public void xuLyInsertRecruiment(final String deadline) {
+        ResponseService service = RetrofitInstance.getRetrofitInstance().create(ResponseService.class);
+        Call<ResponseBody> call = service.insertRecruiment(Commons.PROFILEID,Commons.JOBRECRUIMENTID,deadline,Commons.DESIDERATE);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull retrofit2.Response<ResponseBody> response) {
+
+
+                assert response.body() != null;
+                String sThongBao = null;
+                try {
+                    sThongBao = response.body().string();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                assert sThongBao != null;
+                if (!Commons.PROFILEID.equals("")&&!Commons.JOBRECRUIMENTID.equals("")&&!deadline.equals("")) {
+                    callBackJobRecruimentFragmentModel.xuLyInsertRecruimentThanhCong("Đăng ký thành công");
+
+
+                } else {
+                    callBackJobRecruimentFragmentModel.xuLyInsertRecruimentThatBai("Bạn chưa đăng nhập/đăng ký");
+
+                }
+
+
+
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                t.getMessage();
             }
 
         });
